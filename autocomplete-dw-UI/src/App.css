@@ -24,14 +24,18 @@
   color: #282c34;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
 .App-label {
   display: block;
   margin: auto;
   padding-block-end: 5%;
+}
+
+.App-li {
+  
+}
+
+.App-link {
+  color: #61dafb;
 }
 
 .App-input {

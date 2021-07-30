@@ -1,7 +1,10 @@
 import os
 
-from flask import Flask
+from flask import Flask, request
 from flask_cors import CORS
+
+def querySearchSuggestions(searchString):
+    return [searchString]
 
 def create_app(test_config=None):
     # create and configure the app
@@ -28,6 +31,7 @@ def create_app(test_config=None):
     # a simple page that says hello
     @app.route('/getSearchSuggestions', methods=['POST'])
     def getSearchSuggestions():
-        return 'Hello, World!'
+        searchString = request.data
+        return searchString
 
     return app
