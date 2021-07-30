@@ -25,7 +25,7 @@ function AutocompleteSearchBar() {
     <div>
       <input className="App-input" type="text" name="search" onChange={getSearchSuggestions}/>
       <ul>
-        {searchSuggestions.map(suggestion => <li className="App-li">{suggestion}</li>)}
+        {searchSuggestions.map(suggestion => <li className="App-li" key={suggestion}>{suggestion}</li>)}
       </ul>
     </div>
   );
