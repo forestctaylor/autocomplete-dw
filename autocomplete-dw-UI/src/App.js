@@ -7,14 +7,12 @@ function App() {
     console.log(`Searching for ${searchString}`);
 
     var xhr = new XMLHttpRequest();
+    xhr.onload = function (e) {
+      console.log(xhr.status);
+    };
     xhr.open('POST', 'http://localhost:5000/getSearchSuggestions');
-    xhr.onreadystatechange(function() {
-      if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-        console.log('SUCCESS');
-        // PROCESSING
-      }
-    });
-    xhr.send(searchString);
+    xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+    xhr.send(searchString); // TODO: JSON.stringify({searchString: searchString})
   }
 
   return (
