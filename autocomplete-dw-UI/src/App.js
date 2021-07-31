@@ -12,8 +12,8 @@ function AutocompleteSearchBar() {
 
     xhr.onload = function (response) {
       console.log(`${xhr.status}: ${xhr.response}`);
-      const suggestion = xhr.response;
-      setSearchSuggestions(searchSuggestions => [...searchSuggestions, suggestion])
+      var suggestions = JSON.parse(xhr.response).suggestions;
+      setSearchSuggestions(searchSuggestions => suggestions)
     };
 
     xhr.open('POST', 'http://localhost:5000/getSearchSuggestions');
