@@ -1,14 +1,14 @@
+import os 
 import pandas as pd
 
-from flask import Flask, request, Response
+from flask import Flask, request
 from flask.json import jsonify
 from flask_cors import CORS
 
-def querySearchSuggestions(searchString):
-    return {'suggestions': ['DUMMY', 'DUMMY']}
+from .helpers import loadSearchSuggestionData, querySearchSuggestions
 
 def create_app():
-    #df = pd.read_csv('./resources/user-ct-test-collection-01.txt')
+    #ls = loadSearchSuggestionData()
 
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
@@ -17,6 +17,7 @@ def create_app():
     @app.route('/getSearchSuggestions', methods=['POST'])
     def getSearchSuggestions():
         searchString = request.data
-        return jsonify(querySearchSuggestions(searchString))
+        res = jsonify(querySearchSuggestions(searchString))#, ls))
+        return res
 
     return app
