@@ -8,7 +8,23 @@ def loadSearchSuggestionData():
                     names=["AnonID", "Query", "QueryTime", "ItemRank", "ClickURL"],
                     engine="python")
 
-    return df['Query'].tolist()
+    return [str(entry) for entry in df['Query'].to_list()]
 
 def querySearchSuggestions(searchString, ls):
-    return {'suggestions': ['DUMMY']}
+    """
+    TODO: Make search more efficient. This bare-bones, worst-case O(n) approach is algorithmically no better than a 
+    tree-based + DFS approach, but practically it may still be more performant to traverse a tree with DFS.
+    """
+
+    searchString = str(searchString)
+    suggestions = []
+
+    for entry in ls:
+        #print(f'Checking {entry}')
+        if entry.startswith(searchString): # Greedy query algorithm
+            if entry not in suggestions:
+                suggestions.append(entry)
+        if len(suggestions) > 9:
+            break
+
+    return {'suggestions': suggestions}

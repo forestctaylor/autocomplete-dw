@@ -13,7 +13,9 @@ function AutocompleteSearchBar() {
     xhr.onload = function (response) {
       console.log(`${xhr.status}: ${xhr.response}`);
       var suggestions = JSON.parse(xhr.response).suggestions;
+      console.log(`searchSuggestions before update: ${searchSuggestions}`)
       setSearchSuggestions(searchSuggestions => suggestions)
+      console.log(`searchSuggestions after update: ${searchSuggestions}`)
     };
 
     xhr.open('POST', 'http://localhost:5000/getSearchSuggestions');
@@ -24,8 +26,8 @@ function AutocompleteSearchBar() {
   return (
     <div>
       <input className="App-input" type="text" name="search" onChange={getSearchSuggestions}/>
-      <ul>
-        {searchSuggestions.map(suggestion => <li className="App-li" key={suggestion}>{suggestion}</li>)}
+      <ul className="App-ul"> 
+        {searchSuggestions.map(suggestion => <li key={suggestion}>{suggestion}</li>)}
       </ul>
     </div>
   );

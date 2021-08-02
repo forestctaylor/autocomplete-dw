@@ -8,7 +8,7 @@ from flask_cors import CORS
 from .helpers import loadSearchSuggestionData, querySearchSuggestions
 
 def create_app():
-    #ls = loadSearchSuggestionData()
+    ls = loadSearchSuggestionData()
 
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
@@ -16,8 +16,8 @@ def create_app():
 
     @app.route('/getSearchSuggestions', methods=['POST'])
     def getSearchSuggestions():
-        searchString = request.data
-        res = jsonify(querySearchSuggestions(searchString))#, ls))
+        searchString = request.data.decode('utf-8')
+        res = jsonify(querySearchSuggestions(searchString, ls))
         return res
 
     return app

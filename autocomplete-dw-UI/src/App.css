@@ -30,8 +30,8 @@
   padding-block-end: 5%;
 }
 
-.App-li {
-  
+.App-ul {
+  list-style-type: none;
 }
 
 .App-link {
